@@ -75,4 +75,16 @@ public class RecipeActivityTest {
 
     }
 
+    @Test
+    public void openActivityWithFriedTomatoesIDShouldShowRecipeForFriedTomatoes(){
+
+        Intent intent = new Intent();
+        intent.putExtra(KEY_ID,"fried_tomatoes");
+        activity.launchActivity(intent);
+
+        onView(withId(R.id.title)).check(matches(withText("Fried Tomatoes")));
+        onView(withId(R.id.description)).check(matches(withText("When about half ripe, wash, cut in halves, season with salt and pepper, dust with bread crumbs. Have hot butter in skillet, brown tomatoes on both sides. Then put over moderate fire to cook slowly. Add 1-3 cup cream and let boil up. Tomatoes will have to be removed with cake turner.")));
+
+    }
+
 }
