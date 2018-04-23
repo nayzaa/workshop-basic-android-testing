@@ -56,7 +56,8 @@ public class RecipeStore {
         return map.get(id);
     }
 
-    public boolean deleteAllRecipes(){
-
+    public int getCountRecipes (){
+        return recipes.size();
     }
+
 }
