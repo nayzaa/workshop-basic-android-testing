@@ -39,6 +39,7 @@ public class RecipeActivityTest {
         intent.putExtra(KEY_ID,"chocolate_pudding");
         activity.launchActivity(intent);
 
+        onView(withId(R.id.title)).check(matches(withText("Chocolate Pudding")));
         onView(withId(R.id.description)).check(matches(withText("2 tablespoons chocolate\n" +
                 "yolks of 4 eggs\n" +
                 "1 cup sugar\n" +
