@@ -62,4 +62,16 @@ public class RecipeActivityTest {
 
     }
 
+    @Test
+    public void openActivityWithDeviledEggsIDShouldShowRecipeForDeviledEggs(){
+
+        Intent intent = new Intent();
+        intent.putExtra(KEY_ID,"deviled_eggs");
+        activity.launchActivity(intent);
+
+        onView(withId(R.id.title)).check(matches(withText("Deviled Eggs")));
+        onView(withId(R.id.description)).check(matches(withText("Boil fresh eggs until hard, remove shells, cut into halves lengthwise, remove yolks and mash very fine. Season with melted butter, pepper, salt, sugar and a little vinegar or prepared salad dressing may be used if preferred. Stuff eggs and in the center of each put a stuffed olive.")));
+
+    }
+
 }
