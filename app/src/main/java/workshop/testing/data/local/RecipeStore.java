@@ -1,6 +1,8 @@
 package workshop.testing.data.local;
 
 import android.content.Context;
+import android.content.res.AssetManager;
+import android.util.Log;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,20 +21,42 @@ public class RecipeStore {
     public RecipeStore(Context context, String directory) {
         // TODO:: for your homework -> Read all file from assets/recipes directory
 
-        // Demo in workshop :: Ugly code !!
-        File file1 = new File(directory, "chocolate_pudding.txt");
-        InputStream stream1 = null;
+        AssetManager assetManager = context.getAssets();
+
+        String[] files = new String[0];
+        
         try {
-            stream1 = context.getAssets().open(file1.getPath());
-            Recipe recipe = Recipe.readFromStream(stream1);
-            recipes.add(recipe);
-            map.put(recipe.id, recipe);
+            files = assetManager.list("recipes");
         } catch (IOException e) {
             e.printStackTrace();
+        }
+
+        // Demo in workshop :: Ugly code !!
+//        File file1 = new File(directory, "chocolate_pudding.txt");
+        
+        InputStream stream1 = null;
+
+        for (String file: files) {
+            Log.d("File name", "RecipeStore: " + file);
+
+            File file1 = new File(directory, file);
+
+            try {
+                stream1 = context.getAssets().open(file1.getPath());
+                Recipe recipe = Recipe.readFromStream(stream1);
+                recipes.add(recipe);
+                map.put(recipe.id, recipe);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     public Recipe getRecipe(String id) {
         return map.get(id);
+    }
+
+    public boolean deleteAllRecipes(){
+
     }
 }

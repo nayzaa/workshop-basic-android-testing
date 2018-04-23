@@ -26,6 +26,8 @@ public class RecipeActivityTest {
     @Test
     public void openActivityByDefaultShouldShowRecipeNotFound(){
 
+        activity.launchActivity(null);
+
         onView(withId(R.id.description)).check(matches(withText("Recipe not found.")));
 
     }
