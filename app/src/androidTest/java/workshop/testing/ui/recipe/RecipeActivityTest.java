@@ -50,4 +50,16 @@ public class RecipeActivityTest {
 
     }
 
+    @Test
+    public void openActivityWithCreamedCarrotsIDShouldShowRecipeForCreamedCarrots(){
+
+        Intent intent = new Intent();
+        intent.putExtra(KEY_ID,"creamed_carrots");
+        activity.launchActivity(intent);
+
+        onView(withId(R.id.title)).check(matches(withText("Creamed Carrots")));
+        onView(withId(R.id.description)).check(matches(withText("Peel and dice carrots, cook in salt water until tender, remove from stove and drain. Fry 4 slides of bacon, drain off a part of grease, cut bacon in small slices, add carrots, 2 tablespoons of flour, stir all together, add 1 cup of sweet cream, salt and pepper to taste.")));
+
+    }
+
 }
